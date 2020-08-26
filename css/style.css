@@ -1,0 +1,876 @@
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
+} /*посмотри значение применения на канале от 0 до 1
+(изменяет значение отступов внутри контейнера)*/
+
+ul {
+  list-style: none;
+}
+
+/*---шрифты---*/
+@font-face {
+  font-family: "balqis";
+  src: url("../fonts/balqis.woff2") format("woff2"),
+    url("../fonts/balqis.woff") format("woff");
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap; /*С этим значением блоковый период сжимается до 0, а период подмены достигает бесконечности. Здесь также отсутствует период отказа. Другими словами, браузер не ждет шрифт и сразу рендерит текст с фолбек шрифтом. Как только шрифт загружается, текст рендерится заново.*/
+} /*полдключаем шрифты*/
+
+@font-face {
+  font-family: "RobotoCondensed-Light";
+  src: url("../fonts/RobotoCondensed-Light.woff2") format("woff2"),
+    url("../fonts/RobotoCondensed-Light.woff") format("woff");
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap; /*С этим значением блоковый период сжимается до 0, а период подмены достигает бесконечности. Здесь также отсутствует период отказа. Другими словами, браузер не ждет шрифт и сразу рендерит текст с фолбек шрифтом. Как только шрифт загружается, текст рендерится заново.*/
+} /*полдключаем шрифты*/
+
+@font-face {
+  font-family: "RobotoCondensed-Lightitalic";
+  src: url("../fonts/RobotoCondensed-Lightitalic.woff2") format("woff2"),
+    url("../fonts/RobotoCondensed-Lightitalic.woff") format("woff");
+  font-weight: 300;
+  font-style: italic;
+  font-display: swap; /*С этим значением блоковый период сжимается до 0, а период подмены достигает бесконечности. Здесь также отсутствует период отказа. Другими словами, браузер не ждет шрифт и сразу рендерит текст с фолбек шрифтом. Как только шрифт загружается, текст рендерится заново.*/
+} /*полдключаем шрифты*/
+
+@font-face {
+  font-family: "RobotoCondensed-Regular";
+  src: url("../fonts/RobotoCondensed-Regular.woff2") format("woff2"),
+    url("../fonts/RobotoCondensed-Regular.woff") format("woff");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap; /*С этим значением блоковый период сжимается до 0, а период подмены достигает бесконечности. Здесь также отсутствует период отказа. Другими словами, браузер не ждет шрифт и сразу рендерит текст с фолбек шрифтом. Как только шрифт загружается, текст рендерится заново.*/
+} /*полдключаем шрифты*/
+
+/*---настройки---*/
+a {
+  color: inherit; /*уберает наследовательность у ссылки*/
+  text-decoration: none;
+}
+
+body {
+  color: #000; /*задаем цвет всем шрифтам*/
+  font-family: "RobotoCondensed-Light";
+  font-size: 18px;
+  line-height: 21px;
+}
+.container {
+  max-width: 1230px;
+  margin: 0 auto; /*(внешний отступ)ставит блоки внутрик контейнера по центру*/
+  padding: 0 15px;
+}
+
+.page-section {
+  margin: 200px 0;
+  max-width: 1920px; /*задаем максимальное разрешение для слайдера*/
+}
+
+.title {
+  font-size: 96px;
+  line-height: 128px;
+  color: #e2ab3f;
+  font-family: "balqis";
+  font-weight: 300;
+  margin-bottom: 100px;
+}
+
+.title span {
+  font-size: 24px;
+  line-height: 28px;
+  color: #000;
+  font-family: "RobotoCondensed-Lightitalic";
+  display: block;
+  margin-top: -30px;
+}
+
+/*---header---*/
+
+header {
+  background-image: url("../images/header-bg.jpg");
+  height: 100vh; /* vh - аналог %  (100% высота)*/
+  background-repeat: no-repeat; /*картинка не повторяется*/
+  background-size: cover; /*растягивает картинку на ширену экрана*/
+  background-position: bottom center; /*позиционирование картинки по центру*/
+}
+
+.header__top {
+  display: flex; /*позволяет гибко выстраивать элементы внутри блока*/
+  justify-content: space-between;
+  padding-top: 72px;
+  font-size: 24px;
+  line-height: 28px;
+  font-family: "RobotoCondensed-Regular";
+}
+
+.menu__list-item {
+  display: inline-block; /*Это значение генерирует блочный элемент, который обтекается другими элементами веб-страницы подобно встроенному элементу. Фактически такой элемент по своему действию похож на встраиваемые элементы (вроде тега <img>). При этом его внутренняя часть форматируется как блочный элемент, а сам элемент — как встроенный.*/
+}
+
+.menu__list-item + .menu__list-item {
+  margin-left: 52px; /*делает левый отступ всем элементам(кроме первого)*/
+}
+
+.menu__list-link:hover {
+  text-decoration: underline; /*делает нижнее подчеркивание, после наведения*/
+}
+
+.header__phone {
+  padding-left: 40px;
+  position: relative; /*делаем родителем для элемента before*/
+}
+
+.header__phone::before {
+  content: "";
+  position: absolute; /*абсолютное позиционирование относительно кrelative*/
+  background-image: url("../images/phone-icon.svg");
+  width: 30px;
+  height: 30px;
+  left: 0; /*убирает отсуп left*/
+}
+
+.header__title {
+  padding-top: 152px;
+  text-align: center;
+  font-size: 250px;
+  line-height: 334px;
+  font-family: "balqis";
+  font-weight: 300;
+}
+
+.header__title span {
+  display: block; /*делает элемент блочным*/
+  text-align: right;
+  font-size: 56px;
+  line-height: 66px;
+  font-family: "RobotoCondensed-Lightitalic";
+  margin-top: -66px;
+  margin-right: 85px;
+}
+
+.fairy-tail__slider {
+  width: 50%;
+}
+
+.slick-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(
+    -50%
+  ); /*выравнивание по оси Y относительно самого элемента*/
+  z-index: 5;
+  cursor: pointer;
+  background-color: transparent;
+  border: none;
+  outline: none; /*обводка на стрелке*/
+}
+
+.slick-prev {
+  left: 0;
+}
+
+.slick-next {
+  right: 0;
+}
+
+.fairy-tail_inner {
+  position: relative;
+}
+
+.fairy-tail__container,
+.our-trip__container {
+  max-width: 1230px;
+  padding: 0 15px;
+  margin: 0 auto;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+.fairy-tail__body {
+  width: 50%;
+  margin-left: auto; /*отправляем текст вправо*/
+  padding-left: 55px;
+}
+
+.fairy-tail__body {
+  width: 50%;
+  margin-left: auto;
+  padding-left: 55px;
+  display: flex;
+  flex-direction: column; /*переворачивает оси X Y*/
+  justify-content: space-around; /*разбрасывает элемент тепереь по оси Y*/
+  height: 100%;
+}
+
+.fairy-tail__body-title {
+  font-family: "RobotoCondensed-Regular";
+}
+
+.fairy-tail__text {
+  padding: 10px 0;
+}
+
+.our-trip__slider {
+  width: 50%;
+  margin-left: auto; /*сдвигаем слайдер влево*/
+}
+
+.our-trip__inner {
+  position: relative;
+}
+.fairy-tail__title {
+  position: relative;
+}
+
+.our-trip__title span {
+  margin-left: 245px;
+}
+.fairy-tail__title span {
+  margin-left: 185px;
+}
+
+.our-trip__body {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; /*прибивает к краям*/
+  align-self: start;
+  height: 100%;
+}
+
+.our-trip__list {
+  margin: 50px 0;
+  font-size: 24px;
+  line-height: 28px;
+}
+
+.our-trip__list li:first-child {
+  margin-bottom: 20px;
+  font-family: "RobotoCondensed-Regular";
+}
+
+.our-trip__btn {
+  font-family: "RobotoCondensed-Light";
+  font-size: 24px;
+  line-height: 28px;
+  border: 1px solid #e2ab3f;
+  padding: 11px 53px;
+  margin-top: 20px;
+  text-decoration: none;
+}
+
+.our-trip__content {
+  width: 100%;
+}
+
+.hotel__title span {
+  margin-left: 120px;
+}
+
+.hotel__inner {
+  display: flex;
+}
+
+.hotel__images {
+  margin-right: 100px;
+  min-width: 40%;
+}
+
+.hotel__text {
+  margin-bottom: 20px;
+}
+
+.hotel__galleray {
+  margin-top: 30px;
+  display: flex;
+  flex-wrap: wrap; /*перенос элементов на другую строку*/
+  justify-content: space-between;
+}
+
+.hotel__galleray a {
+  margin-top: 50px;
+}
+
+.price__inner {
+  display: flex;
+}
+
+.price__on-title,
+.price__off-title {
+  line-height: 28px;
+  margin-bottom: 50px;
+  font-size: 24px;
+  font-family: "RobotoCondensed-Regular";
+}
+
+.price__on {
+  margin-right: 70px;
+  width: 530px;
+}
+
+.price__list-item {
+  margin-bottom: 20px;
+}
+
+.price {
+  background-image: url("../images/price-bg.png");
+  background-repeat: no-repeat;
+  background-position: center right 15%;
+}
+
+.contacts__inner {
+  display: flex;
+  justify-content: space-between;
+}
+
+.contacts__content {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.contacts__date,
+.contacts__price {
+  font-family: "balqis";
+  font-size: 96px;
+  color: #e2ab3f;
+  line-height: 100px;
+  font-weight: 300;
+}
+
+.contacts__date {
+  margin-bottom: 20px;
+}
+
+.contacts__price {
+  margin-left: 120px;
+}
+
+.contacts__date span,
+.contacts__price span {
+  display: block;
+  line-height: 28px;
+  font-size: 24px;
+  color: #000;
+  margin-top: -10px;
+  margin-left: 205px;
+  font-family: "RobotoCondensed-Lightitalic";
+}
+
+.contacts__form {
+  max-width: 383px;
+  margin: 0 auto;
+}
+
+.contacts__form-title {
+  font-size: 24px;
+  line-height: 28px;
+  margin-bottom: 50px;
+  font-family: "RobotoCondensed-Regular";
+}
+
+.contacts__form-input {
+  border: 1px solid #e2ab3f;
+  display: block; /*узнать*/
+  margin-bottom: 20px;
+  height: 50px;
+  width: 100%;
+  padding: 0 31px;
+  font-weight: 300;
+  font-size: 18px;
+  line-height: 21px;
+  font-family: "RobotoCondensed-Light";
+}
+
+.contacts__form-input::placeholder {
+  color: #000;
+} /*узнать placeholder*/
+
+.contacts__form-btn {
+  font-weight: 300;
+  font-size: 24px;
+  line-height: 28px;
+  text-transform: uppercase;
+  border: 1px solid #e2ab3f;
+  background-color: transparent; /*transparent*/
+  padding: 11px 45px;
+  font-weight: 300;
+  font-family: "RobotoCondensed-Light";
+  cursor: pointer;
+}
+
+.footer {
+  background-image: url(../images/footer-bg.jpg);
+  height: 100vh;
+  background-repeat: no-repeat;
+  background-position: bottom center;
+  padding-top: 96px;
+}
+
+.footer__inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.footer__text {
+  font-size: 86px;
+  line-height: 115px;
+  font-family: "balqis";
+}
+
+.footer__contacts {
+  width: 356px;
+  height: 527px;
+  background-image: url(../images/footer-contact-bg.png);
+  background-repeat: no-repeat;
+  text-align: center;
+  background-size: cover;
+}
+
+.footer_contacts-title {
+  font-size: 86px;
+  line-height: 115px;
+  color: #e2ab3f;
+  font-family: "balqis";
+  margin-bottom: 50px;
+  padding-top: 50px;
+}
+
+.footer__phone,
+.footer__email {
+  display: inline-block; /*к тегу применяются блочные свойства, но ведет он себя как строчный*/
+  margin-left: 10px;
+  position: relative;
+  padding-left: 40px;
+}
+
+.footer__phone::before,
+.footer__email::before {
+  content: "";
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  left: 0;
+  top: -5px;
+}
+
+
+.footer__phone::before {
+  background-image: url(../images/footer-phone-icon.svg);
+}
+
+.footer__email::before {
+  background-image: url(../images/footer-email-icon.svg);
+}
+.footer__phone::before,
+.footer__email::before{
+  background-repeat: no-repeat;
+  background-size: 100%;
+}
+
+.footer__phone {
+  margin-bottom: 20px;
+}
+
+.footer__social{
+  margin-top: 38px;
+}
+
+.footer__social a {
+  margin: 0 7px;
+}
+.icon-second,
+.icon-one {
+  width: 50px;
+  height: 50px;
+  fill: red;
+}
+
+/*adaptation*/
+
+@media (max-width: 1240px) {
+  .header__title {
+    padding-top: 120px;
+    font-size: 180px;
+    line-height: 220px;
+  }
+  .header__title span {
+    font-size: 50px;
+    margin-top: -50px;
+  }
+}
+
+@media (max-width: 991px) {
+  .page-section {
+    margin: 100px 0;
+  }
+  .fairy-tail__container,
+  .our-trip__container {
+    position: static; /*узнать*/
+  }
+  .fairy-tail__slider,
+  .our-trip__slider {
+    width: 100%;
+  }
+  .fairy-tail__body,
+  .our-trip__bode {
+    width: 100%;
+    padding-left: 0;
+  }
+  .our-trip__slider {
+    margin-top: 100px;
+  }
+  .our-trip__slider-item {
+    max-height: 700px;
+  }
+  .our-trip__list{
+    font-size: 18px;
+  }
+  .hotel__galleray img {
+    width: 210px;
+    height: 95px;
+    margin: 0;
+    padding: 0;
+  }
+  .hotel__text {
+    font-size: 18px;
+  }
+  .hotel__images {
+    margin-right: 50px;
+    min-width: 45%;
+  }
+  .footer_contacts-title{
+    margin-bottom: 20px;
+    font-size: 74px;
+  }
+  .footer__contacts {
+    width: 325px;
+    height: 480px;
+  }
+  .footer__social{
+    margin-top: 10px;  
+  }
+  .footer__text{
+    font-size: 78px;
+  }
+  .footer__phone img,
+  .footer__email img{
+    width: 20px;
+  }
+}
+
+@media (max-width: 920px) {
+  .hotel-inner {
+    width: 100%;
+    position: static; /*узнать*/
+  }
+
+  .hotel__galleray img {
+    width: 200px;
+    height: 95px;
+  }
+  .hotel__text {
+    font-size: 18px;
+  }
+  .hotel__images {
+    margin-right: 50px;
+    min-width: 45%;
+  }
+  .hotel__galleray {
+    margin: 0;
+  }
+  .slick-slider,
+  .hotel__images {
+    margin-bottom: 20px;
+  }
+  .contacts__date,
+  .contacts__price{
+    font-size: 82px;
+  }
+  .contacts__info span{
+    font-size: 18px;
+  }
+  .contacts__images{
+    width: 40%;
+  }
+  .footer_contacts-title{
+    margin-bottom: 10px;
+    font-size: 54px;
+  }
+  .footer__contacts {
+    width: 275px;
+    height: 408px;
+  }
+  .footer__social{
+    margin-top: 10px;  
+  }
+  .footer__text{
+    font-size: 58px;
+  }
+  .footer__phone,
+  .footer__email{
+    font-size: 14px;
+  }
+  .footer_contacts-title{
+    height: 145px;
+  }
+  
+
+@media (max-width: 850px) {
+  .header__title {
+    padding-top: 100px;
+    font-size: 140px;
+    line-height: 150px;
+  }
+  .header__title span {
+    font-size: 30px;
+    margin-top: -44px;
+  }
+  .header__top {
+    font-size: 20px;
+    line-height: 24px;
+  }
+  .header__phone::before {
+    width: 25px;
+    height: 25px;
+    background-size: cover;
+  }
+  .hotel-inner {
+    width: 100%;
+    position: static; /*узнать*/
+  }
+
+  .hotel__galleray img {
+    width: 180px;
+    height: 75px;
+  }
+  .hotel__galleray {
+    margin: 0;
+  }
+  .hotel__text {
+    font-size: 16px;
+  }
+  .hotel__images {
+    margin-right: 50px;
+    min-width: 45%;
+  }
+}
+
+@media (max-width: 790px) {
+  .hotel__images {
+    min-width: 100%;
+    max-height: 90vh;
+  }
+  .hotel__inner {
+    flex-wrap: wrap;
+  }
+  .hotel__content {
+    padding: 10px 15px;
+  }
+  .hotel__galleray img {
+    width: 280px;
+    height: 125px;
+  }
+  .hotel__galleray {
+    justify-content: space-around;
+  }
+  .contacts__date,
+  .contacts__price{
+    font-size: 62px;
+  }
+  .contacts__info span{
+    font-size: 18px;
+  }
+  .contacts__images{
+    width: 100%;
+    margin-top: 100px;
+  }
+  .contacts__inner{
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  .application {
+    padding: 0;
+  }
+  .hotel-inner {
+    width: 100%;
+    position: static; /*узнать*/
+  }
+  .hotel-container{
+    padding: 0;
+  }
+  .hotel__title{
+    padding-left: 15px;
+  }
+  .page-section {
+    margin: 50px 0;
+  }
+  .trip__btn {
+    display: flex;
+    justify-content: center;
+  }
+  .footer__inner {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .contacts {
+    margin: 0;
+  }
+  
+  .contacts__form-btn{
+    background-color: white;
+  }
+}
+
+@media (max-width: 630px) {
+  .hotel__galleray img {
+    width: 240px;
+    height: 105px;
+  }
+  .price {
+    background-size: 20vh;
+  }
+  .price__inner {
+    flex-wrap: wrap;
+  }
+  .text-content {
+    font-size: 16px;
+  }
+  .our-trip__list li:first-child {
+   font-size: 18px;
+  }
+}
+
+@media (max-width: 600px) {
+  .header__title {
+    font-size: 80px;
+    line-height: 120px;
+  }
+  .header__top {
+    justify-content: center;
+    flex-wrap: wrap;
+    line-height: 38px;
+  }
+  .header__title span {
+    font-size: 22px;
+    margin-top: -46px;
+    margin-right: 15px;
+  }
+  .menu {
+    width: 100%;
+    text-align: center;
+    margin: 0 0 0 25px;
+  }
+  .fairy-tail__item img,
+  .our-trip__slider-item img {
+    height: 50vh;
+    width: 100%;
+    object-fit: cover; /*узнать*/
+  }
+  .page-section {
+    max-width: 50px 0;
+  }
+  .title {
+    margin-bottom: 25px;
+    font-size: 50px;
+    line-height: 110px;
+  }
+  .fairy-tail__title span {
+    margin-left: 110px;
+  }
+  .our-trip__title span {
+    margin-left: 125px;
+  }
+  .header {
+    height: 700px;
+  }
+  .contacts__date span, .contacts__price span{
+    margin-left: 130px;
+  }
+  .contacts__date {
+    margin-bottom: 0;
+  }
+}
+
+@media (max-width: 550px) {
+  .hotel__galleray img {
+    width: 200px;
+    height: 105px;
+  }
+}
+
+@media (max-width: 480px) {
+  .hotel__galleray img {
+    width: 180px;
+    height: 105px;
+  }
+  .page-section {
+    margin: 50px 0;
+  }
+  .footer__text {
+    font-size: 42px;
+  }
+  .contacts {
+    margin: 0;
+  }
+}
+
+@media (max-width: 420px) {
+  .hotel__galleray img {
+    width: 150px;
+    height: 85px;
+  }
+  .contacts__form {
+    max-width: 300px;
+  }
+  .our-trip__btn,
+  .contacts__form-btn{
+    font-size: 20px;
+  }
+  .contacts__info span,
+  .contacts__price span{
+    font-size: 14px;
+    margin-left: 120px;
+  }
+  .contacts__form-title{
+    font-size: 18px;
+  }
+  
+}
+
+@media (max-width: 380px) {
+  .header__title {
+    font-size: 60px;
+    line-height: 100px;
+  }
+  .header__title span {
+    font-size: 18px;
+    margin-top: -46px;
+    margin-right: 0px;
+  }
+  .menu__list-item + .menu__list-item {
+    margin-left: 18px;
+  }
+  .title {
+    font-size: 50px;
+  }
+  .title span {
+    font-size: 20px;
+  }
+  .fairy-tail__title span {
+    margin-left: 90px;
+  }
+  .hotel__galleray img {
+    width: 120px;
+    height: 75px;
+  }
+ }
+}
